@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Sign_Up extends AppCompatActivity {
 
@@ -49,35 +50,24 @@ public class Sign_Up extends AppCompatActivity {
         String Email=etEmail2.getText().toString();
         String PassWord=etPassword2.getText().toString();
         String ConfirmPassword=etPasswordConfirm.getText().toString();
-        boolean isOk=true;
+        boolean isOk=true;// بمشي على كل الفحوصات ويفحصهن
 
-        if (Email.length()==0)
+        if (Email.length()*PassWord.length()*ConfirmPassword.length()==0)
         {
-            etEmail2.setError("please enter your email");
+            etEmail2.setError("one ofe the files are empty");
             isOk=false;
         }
 
-        if (PassWord.length()==0)
-        {
-            etPassword2.setError("please enter your Password");
-            isOk=false;
-        }
-
+        if (PassWord.equals(ConfirmPassword)==false)
         {
             etPasswordConfirm.setError("your password does not match");
             isOk=false;
         }
 
+        if (isOk)
+        {
+            FirebaseAuth auth=FirebaseAuth.getInstance();
 
-        if (Email.indexOf("@")<=0)
-        {
-            etEmail2.setError("your emailn is wrong");
-            isOk=false;
-        }
-        if (PassWord.length()<7)
-        {
-            etPassword2.setError("your password should be at least 7 characters");
-            isOk=false;
         }
 
 

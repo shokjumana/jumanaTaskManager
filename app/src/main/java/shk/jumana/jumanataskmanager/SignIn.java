@@ -76,7 +76,7 @@ public class SignIn extends AppCompatActivity {
 
         if (Email.indexOf("@")<=0)
         {
-            etEmail.setError("your emailn is wrong");
+            etEmail.setError("your email is wrong");
             isOk=false;
         }
         if (PassWord.length()<7)
