@@ -42,6 +42,7 @@ public class Sign_Up extends AppCompatActivity {
             {
 
                 CheckAndSave();//the purpose of check and save is to go to the sign in page
+                //توثيق خاص : used for signing in and signing out
             }
 
 
@@ -73,14 +74,19 @@ public class Sign_Up extends AppCompatActivity {
         if (isOk)
         {
             FirebaseAuth auth=FirebaseAuth.getInstance();
-            auth.createUserWithEmailAndPassword(Email,PassWord).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            auth.createUserWithEmailAndPassword(Email,PassWord).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+            {
+                /**
+                 * when the mission of this task-is complete
+                 * @param task    info about the event
+                 */
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {
-                    if (task.isSuccessful())
+                    if (task.isSuccessful())   //check if creating account is complete and successful
                     {
                         Toast.makeText(Sign_Up.this, "creation successful", Toast.LENGTH_SHORT).show();// checks if the email is there and gives a text
-                        finish();//when it complets it finishes and goes to the sign in page
+                        finish();//when it completes it finishes and goes to the sign in page,close current activity
                     }
                     else
                     {
@@ -94,6 +100,6 @@ public class Sign_Up extends AppCompatActivity {
             });
         }
 
-
+//توثيق فئات ودوال منستعمل/**
     }
 }
