@@ -40,7 +40,8 @@ public class Sign_Up extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                CheckAndSave();
+
+                CheckAndSave();//the purpose of check and save is to go to the sign in page
             }
 
 
@@ -78,12 +79,14 @@ public class Sign_Up extends AppCompatActivity {
                 {
                     if (task.isSuccessful())
                     {
-                        Toast.makeText(Sign_Up.this, "creation successful", Toast.LENGTH_SHORT).show();
-                        finish();
+                        Toast.makeText(Sign_Up.this, "creation successful", Toast.LENGTH_SHORT).show();// checks if the email is there and gives a text
+                        finish();//when it complets it finishes and goes to the sign in page
                     }
                     else
                     {
                         Toast.makeText(Sign_Up.this, "creation failed"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        //gives a text that its not working
+
 
 
                     }
