@@ -54,7 +54,7 @@ public class Sign_Up extends AppCompatActivity {
 
         if (Email.length()*PassWord.length()*ConfirmPassword.length()==0)
         {
-            etEmail2.setError("one ofe the files are empty");
+            etEmail2.setError("one of the files are empty");
             isOk=false;
         }
 
