@@ -1,14 +1,19 @@
 package shk.jumana.jumanataskmanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Sign_Up extends AppCompatActivity {
@@ -67,7 +72,23 @@ public class Sign_Up extends AppCompatActivity {
         if (isOk)
         {
             FirebaseAuth auth=FirebaseAuth.getInstance();
+            auth.createUserWithEmailAndPassword(Email,PassWord).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task)
+                {
+                    if (task.isSuccessful())
+                    {
+                        Toast.makeText(Sign_Up.this, "creation successful", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(Sign_Up.this, "creation failed"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
+
+                    }
+                }
+            });
         }
 
 
