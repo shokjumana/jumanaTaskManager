@@ -59,13 +59,15 @@ public class Sign_Up extends AppCompatActivity {
         String ConfirmPassword=etPasswordConfirm.getText().toString();
         boolean isOk=true;// بمشي على كل الفحوصات ويفحصهن
 
-        if (Email.length()*PassWord.length()*ConfirmPassword.length()==0)
+        //لما نعمل فحص احنا منحط احتمال انو غلط , عشان اذا كان الفحص غلط ,بوقف عن العمل
+
+        if (Email.length()*PassWord.length()*ConfirmPassword.length()==0)//تفحص اذا كلمة السر وتأكيد كلمة السر يساوون 0
         {
             etEmail2.setError("one of the files are empty");
             isOk=false;
         }
 
-        if (PassWord.equals(ConfirmPassword)==false)
+        if (PassWord.equals(ConfirmPassword)==false)//تفحص اذا كلمة السر تساوي تاكيد كلمة السر
         {
             etPasswordConfirm.setError("your password does not match");
             isOk=false;
@@ -74,7 +76,7 @@ public class Sign_Up extends AppCompatActivity {
         if (isOk)
         {
             FirebaseAuth auth=FirebaseAuth.getInstance();
-            auth.createUserWithEmailAndPassword(Email,PassWord).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+            auth.createUserWithEmailAndPassword(Email,PassWord).addOnCompleteListener(new OnCompleteListener<AuthResult>()//بفتح ال firebase و بتسجل فيو ال email and passwordبفتح ال firebase و بتسجل فيو ال email and password
             {
                 /**
                  * when the mission of this task-is complete
@@ -91,7 +93,7 @@ public class Sign_Up extends AppCompatActivity {
                     else
                     {
                         Toast.makeText(Sign_Up.this, "creation failed"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        //gives a text that its not working
+                        //gives a text that its not working - creation failed
 
 
 
@@ -100,6 +102,6 @@ public class Sign_Up extends AppCompatActivity {
             });
         }
 
-//توثيق فئات ودوال منستعمل/**
+//     توثيق فئات ودوال منستعمل/**
     }
 }
