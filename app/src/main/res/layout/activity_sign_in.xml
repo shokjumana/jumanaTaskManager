@@ -18,7 +18,6 @@
             android:hint="E-mail" />
 
 
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
