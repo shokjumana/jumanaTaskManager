@@ -9,10 +9,6 @@ public class Mahame
     private int importance;  //for the seek bar
     private String owners;
 
-
-
-
-
     public Mahame()
     {
 

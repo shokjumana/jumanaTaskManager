@@ -2,7 +2,9 @@ package shk.jumana.jumanataskmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -23,6 +25,40 @@ public class AddTask extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+
+        etTittleTask= findViewById(R.id.etTittleTask);
+        etSubjectTask= findViewById(R.id.etSubjectTask);
+        skImportant= findViewById(R.id.skImportant);
+        imageTask= findViewById(R.id.imageTask);
+        btnCancelTask= findViewById(R.id.btnCancelTask);
+        btnSaveTask= findViewById(R.id.btnSaveTask);
+
+
+
+        btnCancelTask.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(AddTask.this,MainActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        btnSaveTask.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(AddTask.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+
+
 
 
 
