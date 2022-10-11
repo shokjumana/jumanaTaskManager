@@ -34,7 +34,6 @@ public class AddTask extends AppCompatActivity {
         btnSaveTask= findViewById(R.id.btnSaveTask);
 
 
-
         btnCancelTask.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -45,7 +44,6 @@ public class AddTask extends AppCompatActivity {
 
             }
         });
-
         btnSaveTask.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -55,13 +53,5 @@ public class AddTask extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
-
-
-
-
-
-
     }
 }
