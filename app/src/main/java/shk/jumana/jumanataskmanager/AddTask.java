@@ -1,5 +1,6 @@
 package shk.jumana.jumanataskmanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,8 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import shk.jumana.jumanataskmanager.Data.data.Mahame;
 
 public class AddTask extends AppCompatActivity {
 
@@ -44,13 +53,54 @@ public class AddTask extends AppCompatActivity {
 
             }
         });
+
         btnSaveTask.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Intent i = new Intent(AddTask.this,MainActivity.class);
-                startActivity(i);
+             CheckAndSave();
+            }
+
+            private void CheckAndSave()
+            {
+                //استخراج القيم من صفحة الاضافة
+                String Title=etTittleTask.getText().toString();
+                String Subject=etSubjectTask.getText().toString();
+                int important=skImportant.getProgress();
+                // بناء كائن واعطاؤه قيم الصفات
+                Mahame m= new Mahame();
+                m.setTitle(Title);
+                m.setSubject(Subject);
+                m.setImportance(important);
+
+                //استخراج رقم المميز للمستعمل
+
+                String owner = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                m.setOwners(owner);
+
+                String key =FirebaseDatabase.getInstance().getReference().child("mahamat").child(owner).push().getKey();
+                m.setKey(key);
+
+                FirebaseDatabase.getInstance().getReference().child("mahamat").child(owner).child(key).setValue(m).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            finish();
+                            Toast.makeText(AddTask.this,"added succefuly",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(AddTask.this,"added failled",Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+                });
+
             }
         });
     }

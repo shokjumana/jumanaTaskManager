@@ -1,9 +1,22 @@
 package shk.jumana.jumanataskmanager.Data.data;
 
+/**
+ * فئة تصف مهمة بادارة المهمات
+ */
+
+
 public class Mahame
 {
 
-    private String key;//المزهي لكل المهمات-رقم مميز -رقم هوية -id
+    /**
+     * رقم مميز للمهمة يتم انتاجه من قبل خادم
+     */
+
+    private String key;
+    //المزهي لكل المهمات-رقم مميز -رقم هوية -id
+    /**
+     * رقم مميز للمستعمل
+     */
     private String title;
     private String subject;
     private int importance;  //for the seek bar
