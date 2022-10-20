@@ -3,9 +3,11 @@ package shk.jumana.jumanataskmanager;
 import static shk.jumana.jumanataskmanager.R.id.btnAdd;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -64,8 +66,37 @@ public class MainActivity extends AppCompatActivity
         if (item.getItemId() == R.id.itmSignOut)
         {
             //تسجيل خروج
-            FirebaseAuth.getInstance().signOut();
-            finish();
+            //FirebaseAuth.getInstance().signOut();
+            //finish();
+
+            //تجهيز بناء ديالوج
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            builder.setTitle("sign out");
+            builder.setMessage("are you sure");
+            builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i)
+                {
+                    //اخفاء ديالوج
+                    dialogInterface.dismiss();
+                    //تسجيل خروج من الشاشة
+                    FirebaseAuth.getInstance().signOut();
+                    //الخروج من الشاشة
+                    finish();
+                }
+            });
+            builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i)
+                {
+                    dialogInterface.cancel();
+
+                }
+            });
+            //بناء ديالوج
+            AlertDialog dialog=builder.create();
+            dialog.show();
+
         }
             return true;
     }

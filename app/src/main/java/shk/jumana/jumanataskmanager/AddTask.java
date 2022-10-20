@@ -20,8 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import shk.jumana.jumanataskmanager.Data.data.Mahame;
 
-public class AddTask extends AppCompatActivity {
-
+public class AddTask extends AppCompatActivity
+{
     private TextInputEditText etTittleTask;
     private TextInputEditText etSubjectTask;
     private SeekBar skImportant;
@@ -75,12 +75,20 @@ public class AddTask extends AppCompatActivity {
                 m.setImportance(important);
 
                 //استخراج رقم المميز للمستعمل
+                //uid - universal
+                //user that signed before , مستخدم دخل مسبقا
 
                 String owner = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 m.setOwners(owner);
 
-                String key =FirebaseDatabase.getInstance().getReference().child("mahamat").child(owner).push().getKey();
+                String key =FirebaseDatabase.getInstance().getReference()
+                        .child("mahamat")//جذر جديد تحته يتم تخزين المعلومات
+                        .child(owner)
+                        .push()// add new مستخدم
+                        .getKey();//استخراج الرقم المميز من المهمة التي سيتم اضافتها
                 m.setKey(key);
+
+                //جذر شجرة المعطيات , عنوان جذر شجرة المعطيات
 
                 FirebaseDatabase.getInstance().getReference().child("mahamat").child(owner).child(key).setValue(m).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
