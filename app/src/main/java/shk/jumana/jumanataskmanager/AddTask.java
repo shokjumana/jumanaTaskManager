@@ -97,11 +97,11 @@ public class AddTask extends AppCompatActivity
                         if (task.isSuccessful())
                         {
                             finish();
-                            Toast.makeText(AddTask.this,"added succefuly",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddTask.this,"added successfully",Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
-                            Toast.makeText(AddTask.this,"added failled",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddTask.this,"added failed"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                         }
 
 
