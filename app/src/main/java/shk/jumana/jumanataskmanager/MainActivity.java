@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,18 +24,34 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import shk.jumana.jumanataskmanager.Data.data.MahameAdapter;
+
 public class MainActivity extends AppCompatActivity
 {
+
+    //بناء وسيط,ملائم mahmatAdapter
     private ImageButton btnAdd;
+    //تجهيز الوسيط (حسب الورقة3.1)
+    MahameAdapter mahameAdapter;
+    //قائمة عرض مهمات
+    ListView listView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        //بناء شاشة التنسيق وكل الكائنات التي تحويه
+
         setContentView(R.layout.activity_main);
 
         btnAdd=findViewById(R.id.btnAdd);
+        //3.2 بناء الوسيط
+        mahameAdapter =new MahameAdapter(getApplicationContext());
+        //تجهيز مؤشر لقائمة العرض
+        listView=findViewById(R.id.lvTask);
+
+        listView.setAdapter(mahameAdapter);
 
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +117,8 @@ public class MainActivity extends AppCompatActivity
         }
         return true;
     }
+
+
     private void readMahamatFromFirebase()
     {
         //مؤشر لجذر قاعدة البيانات التابعة للمشروع
@@ -119,6 +138,10 @@ public class MainActivity extends AppCompatActivity
             {
                 // تغيير معطيات بال firebase
                 //بعطي معطيات
+                //الكائن الي فيو بحوي معيطيات الي بكونو تحت الجذر
+                //remove all tasks
+                mahameAdapter.clear();
+
 
             }
 
