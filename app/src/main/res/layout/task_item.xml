@@ -10,7 +10,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="41dp"
-        android:text="Tittle"
+        android:text="Title"
 
         />
 

@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import shk.jumana.jumanataskmanager.Data.data.Mahame;
 import shk.jumana.jumanataskmanager.Data.data.MahameAdapter;
 
 public class MainActivity extends AppCompatActivity
@@ -89,6 +90,9 @@ public class MainActivity extends AppCompatActivity
             //finish();
 
             //تجهيز بناء ديالوج
+            //A dialog is a small window that prompts the user to make a decision or enter additional information.
+            // A dialog does not fill the screen and is normally used for modal events-
+            // that require users to take an action before they can proceed.
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("sign out");
             builder.setMessage("are you sure");
@@ -139,14 +143,22 @@ public class MainActivity extends AppCompatActivity
                 // تغيير معطيات بال firebase
                 //بعطي معطيات
                 //الكائن الي فيو بحوي معيطيات الي بكونو تحت الجذر
-                //remove all tasks
+                //remove all tasks from adapter
                 mahameAdapter.clear();
+
+                for (DataSnapshot d:snapshot.getChildren())//the d يمر على جميع قيم مبنى المعطيات,d من نوع snapshot
+                {
+                    Mahame m=d.getValue(Mahame.class);//استخرجت الابن , جميع الابناء, استخراج الكائن المحفوظ
+                    mahameAdapter.add(m);//اضافة الكائن للوسيط
+                }
+
 
 
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });

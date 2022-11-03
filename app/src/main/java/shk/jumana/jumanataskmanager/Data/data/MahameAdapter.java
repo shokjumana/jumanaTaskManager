@@ -19,6 +19,9 @@ import androidx.annotation.Nullable;
 import shk.jumana.jumanataskmanager.R;
 
 
+
+
+
 //بدنا ال adapter بس لنوع واحد المهمات ,maham
 public class MahameAdapter extends ArrayAdapter <Mahame>
 {
@@ -50,8 +53,6 @@ public class MahameAdapter extends ArrayAdapter <Mahame>
         tvSubject.setText(mahame.getSubject());
         rbImportance.setRating(mahame.getImportance());
         checkBox2.setChecked(false);
-
-
 
 
         return vItem;
