@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity
 
         listView.setAdapter(mahameAdapter);
 
+        //downloading and working مراقب listener for every change on قاعدة البيانات and cleans the المعطيات الموجودة (delete) and downloads new info.
+        readMahamatFromFirebase();
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +124,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
+    /**
+     * downloading and working مراقب listener for every change on قاعدة البيانات and cleans the المعطيات الموجودة (delete) and downloads new info.
+     */
     private void readMahamatFromFirebase()
     {
         //مؤشر لجذر قاعدة البيانات التابعة للمشروع
